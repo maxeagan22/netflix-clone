@@ -1,8 +1,11 @@
 import React from 'react'
+import Message from './components/Message'
 
 export const App = () => {
   return (
-    <div>App</div>
+    <Message />
   )
 }
+
+export default App; 
 

@@ -1,9 +1,10 @@
-import React from 'react'
-import Message from './components/Message'
+import Home from './pages/Home/HomePage'
 
 export const App = () => {
   return (
-    <Message />
+    <div>
+      <Home />
+    </div>
   )
 }
 

@@ -2,28 +2,39 @@ import React, { useEffect, useRef } from 'react'
 import './TitleCards.css'
 import cards_data from '../../assets/cards/Cards_data'
 
-const cardsRef = useRef();
+const TitleCards = ({ title, category }) => {
+  const cardsRef = useRef();
 
-const handleWheel = (event) =>{
-  event.preventDefault();
-  cardsRef.current.scrollLeft += event.deltaY;
-}
+  const handleWheel = (event) => {
+    event.preventDefault();
+    if (cardsRef.current) {
+      cardsRef.current.scrollLeft += event.deltaY;
+    }
+  }
 
-useEffect(() => {
-  cardsRef.current.addEventListener('wheel', handleWheel);
-}, []);
+  useEffect(() => {
+    const cardsElement = cardsRef.current;
+    if (cardsElement) {
+      cardsElement.addEventListener('wheel', handleWheel);
+    }
+    // Cleanup event listener on unmount
+    return () => {
+      if (cardsElement) {
+        cardsElement.removeEventListener('wheel', handleWheel);
+      }
+    }
+  }, []);
 
-const TitleCards = () => {
   return (
     <div className='title-cards'>
-      <h2>Popular on Netflix</h2>
+      <h2>{title ? title : "Popular on Netflix"}</h2>
       <div className="card-list" ref={cardsRef}>
-        {cards_data.map((card,index) => {
-          return <div className="card" key={index}>
-            <img src={card.image} alt=''/>
+        {cards_data.map((card, index) => (
+          <div className="card" key={index}>
+            <img src={card.image} alt={card.name} />
             <p>{card.name}</p>
           </div>
-        })}
+        ))}
       </div>
     </div>
   )

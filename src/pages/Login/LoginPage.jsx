@@ -21,6 +21,10 @@ const LoginPage = () => {
             <p>Need Help?</p>
           </div>
         </form>
+        <div className="form-switch">
+          <p>New to Netflix? <span>Sign Up</span></p>
+          <p>Already have an account? <span>Sign In</span></p>
+        </div>
       </div>
     </div>
   )

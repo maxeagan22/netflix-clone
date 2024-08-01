@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './LoginPage.css'
 import logo from '../../assets/logo.png'
 
 const LoginPage = () => {
+
+  const [signInState, setSignInState] = useState("Sign In ")
+
   return (
     <div className='login-page'>
       <img src={logo} alt='' className='login-logo'/>
       <div className="login-form">
-        <h1>Sign Up</h1>
+        <h1>{signInState}</h1>
         <form >
-          <input type="text"placeholder='Name' />
+          {signInState === "Sign Up" ? <input type="text"placeholder='Name' /> : <></> }
           <input type="email"placeholder='Email' />
           <input type="password"placeholder='Password' />
           <button>Sign Up</button>

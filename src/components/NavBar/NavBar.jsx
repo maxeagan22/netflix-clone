@@ -1,33 +1,42 @@
-import React, { useEffect, useRef } from 'react'
-import './NavBar.css'
-import logo from '../../assets/logo.png'
-import search_icon from '../../assets/search_icon.svg'
-import bell_icon from '../../assets/bell_icon.svg'
-import profile_img from '../../assets/profile_img.png'
-import caret_icon from '../../assets/caret_icon.svg'
+import React, { useEffect, useRef } from 'react';
+import bellIcon from '../../assets/bell_icon.svg';
+import caretIcon from '../../assets/caret_icon.svg';
+import logo from '../../assets/logo.png';
+import profileImg from '../../assets/profile_img.png';
+import searchIcon from '../../assets/search_icon.svg';
+import './NavBar.css';
+
+const DropdownMenu = () => (
+  <div className="dropdown">
+    <p>Sign Out</p>
+  </div>
+);
 
 const NavBar = () => {
-
   const navRef = useRef();
 
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-      if(window.scrollY >= 80){
-        navRef.current.classList.add('nav-dark')
+    const handleScroll = () => {
+      if (window.scrollY >= 80) {
+        navRef.current.classList.add('nav-dark');
+      } else {
+        navRef.current.classList.remove('nav-dark');
       }
-      else{
-        navRef.current.classList.remove('nav-dark')
-      }
-    })
-  }, [])
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <div ref={navRef} className='navbar'>
+    <div ref={navRef} className="navbar">
       <div className="navbar-left">
-        <img src={logo} />
+        <img src={logo} alt="Logo" />
         <ul>
           <li>Home</li>
-          <li>Tv Shows</li>
+          <li>TV Shows</li>
           <li>Movies</li>
           <li>New & Popular</li>
           <li>My List</li>
@@ -35,19 +44,17 @@ const NavBar = () => {
         </ul>
       </div>
       <div className="navbar-right">
-        <img src={search_icon} alt="" className='icons'/>
+        <img src={searchIcon} alt="Search Icon" className="icons" />
         <p>Children</p>
-        <img src={bell_icon} alt="" className='icons'/>
+        <img src={bellIcon} alt="Bell Icon" className="icons" />
         <div className="navbar-profile">
-        <img src={profile_img} alt="" className='profile'/>
-        <img src={caret_icon}/>
-        <div className="dropdown" alt="">
-          <p>Sign Out</p>
-        </div>
+          <img src={profileImg} alt="Profile" className="profile" />
+          <img src={caretIcon} alt="Caret Icon" />
+          <DropdownMenu />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

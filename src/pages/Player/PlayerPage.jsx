@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './PlayerPage.css';
 import back_arrow_icon from '../../assets/back_arrow_icon.png';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const PlayerPage = () => {
 
   const { id } = useParams();
+
+  const navigate = useNavigate()
 
   const [data, setData] = useState({
     name: '',
@@ -37,7 +39,7 @@ const PlayerPage = () => {
 
   return (
     <div className='playerpage'>
-      <img src={back_arrow_icon} alt=''/>
+      <img src={back_arrow_icon} alt='' onClick={() => {navigate(-2)} }/>
       <iframe width='90%' height='90%'
        src={`https://youtube.com/embed/${data.key}`}
        title='trailer'

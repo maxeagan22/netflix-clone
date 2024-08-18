@@ -12,10 +12,9 @@ const TitleCards = ({ title, category }) => {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNzhhNzMzNDM5ZWMwYWQ5N2NhZTZiYzhhYjA3Zjk4MCIsIm5iZiI6MTcyMjU2MjMyMS45MzM1NSwic3ViIjoiNjZhYzM1ZmY5ZDYxNTFjOWU3NmMyYTUzIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.PkDJcS3zKwfOPhngPS-OgczDXwkMsYFEuEmqcSOcnZw'
+      Authorization: `Bearer ${import.meta.env.VITE_REACT_APP_BEARER_TOKEN}`
     }
   };
-  
   
 
   const handleWheel = (event) => {
